@@ -1,0 +1,139 @@
+﻿<UserControl
+	x:Class="CrossBreed.Windows.Views.ConversationsView"
+	xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+	xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+	xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+	xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+	xmlns:local="clr-namespace:CrossBreed.Windows"
+	xmlns:viewModels="clr-namespace:CrossBreed.ViewModels;assembly=CrossBreed.ViewModels"
+	xmlns:views="clr-namespace:CrossBreed.Windows.Views"
+	mc:Ignorable="d"
+	x:Name="this"
+	d:DesignHeight="300" d:DesignWidth="300">
+	<ListBox SelectedItem="{Binding SelectedTab, ElementName=this}" x:Name="ListBox">
+		<ListBox.ItemContainerStyle>
+			<Style TargetType="{x:Type ListBoxItem}" BasedOn="{StaticResource {x:Type ListBoxItem}}">
+				<Setter Property="HorizontalContentAlignment" Value="Stretch" />
+				<Setter Property="Margin" Value="0" />
+				<Setter Property="Padding" Value="0" />
+			</Style>
+		</ListBox.ItemContainerStyle>
+		<ListBox.Resources>
+			<Style TargetType="{x:Type Path}" x:Key="PinIcon">
+				<Setter Property="Data" Value="{x:Static local:Icons.Pin}" />
+				<Setter Property="Stroke" Value="{DynamicResource Theme.Foreground}" />
+				<Setter Property="StrokeThickness" Value="0.5" />
+				<Setter Property="Fill" Value="{DynamicResource Theme.Background}" />
+				<Style.Triggers>
+					<DataTrigger Binding="{Binding IsPinned}" Value="True">
+						<Setter Property="Fill" Value="{DynamicResource Theme.AccentColor}" />
+					</DataTrigger>
+				</Style.Triggers>
+			</Style>
+			<Style TargetType="{x:Type DockPanel}" x:Key="ConversationBackground">
+				<Style.Triggers>
+					<DataTrigger Binding="{Binding HasNew}" Value="True">
+						<Setter Property="Background" Value="{DynamicResource Theme.AccentColor}" />
+					</DataTrigger>
+				</Style.Triggers>
+			</Style>
+			<Style TargetType="{x:Type TextBlock}" x:Key="ConversationForeground">
+				<Setter Property="Foreground" Value="{DynamicResource Theme.Foreground}" />
+				<Style.Triggers>
+					<DataTrigger Binding="{Binding HasNew}" Value="True">
+						<Setter Property="Foreground" Value="{DynamicResource Theme.AccentForeground}" />
+					</DataTrigger>
+				</Style.Triggers>
+			</Style>
+			<DataTemplate DataType="{x:Type viewModels:CharacterConversationViewModel}">
+				<DockPanel Style="{StaticResource ConversationBackground}">
+					<Image Source="{Binding Image}" Height="50" Width="50" />
+					<DockPanel DockPanel.Dock="Right" HorizontalAlignment="Right" Margin="5,0,5,0">
+						<TextBlock Text="{Binding Name}" DockPanel.Dock="Top" HorizontalAlignment="Right" TextTrimming="CharacterEllipsis" x:Name="Name"
+							Style="{StaticResource ConversationForeground}" />
+						<StackPanel DockPanel.Dock="Right" Orientation="Horizontal" HorizontalAlignment="Right" VerticalAlignment="Stretch">
+							<Path DockPanel.Dock="Left" VerticalAlignment="Center" Fill="White" Stroke="Black" StrokeThickness="1">
+								<Path.Style>
+									<Style TargetType="{x:Type Path}">
+										<Setter Property="Data" Value="{x:Null}" />
+										<Style.Triggers>
+											<DataTrigger Binding="{Binding Character.Character.TypingStatus}" Value="Typing">
+												<Setter Property="Data" Value="{x:Static local:Icons.Typing}" />
+											</DataTrigger>
+											<DataTrigger Binding="{Binding Character.Character.TypingStatus}" Value="Paused">
+												<Setter Property="Data" Value="{x:Static local:Icons.TypingPaused}" />
+											</DataTrigger>
+											<DataTrigger Binding="{Binding Character.Character.TypingStatus}" Value="Clear">
+												<Setter Property="Data" Value="{x:Null}" />
+											</DataTrigger>
+										</Style.Triggers>
+									</Style>
+								</Path.Style>
+							</Path>
+							<Path MouseLeftButtonDown="{local:EventBinding TogglePinCommand}" Cursor="Hand" VerticalAlignment="Center" Style="{StaticResource PinIcon}" />
+							<views:IconButton Command="{Binding DataContext.CloseConversationCommand, RelativeSource={RelativeSource AncestorType={x:Type ListBox}}}"
+								CommandParameter="{Binding}" Geometry="{x:Static local:Icons.Close}" StrokeThickness="2" VerticalAlignment="Center" Margin="5,0,0,0" />
+						</StackPanel>
+					</DockPanel>
+				</DockPanel>
+			</DataTemplate>
+			<DataTemplate DataType="{x:Type viewModels:ChannelConversationViewModel}">
+				<DockPanel Style="{StaticResource ConversationBackground}">
+					<TextBlock Text="{Binding Name}" DockPanel.Dock="Left" TextTrimming="CharacterEllipsis" x:Name="Name" Style="{StaticResource ConversationForeground}" />
+					<StackPanel DockPanel.Dock="Right" Orientation="Horizontal" HorizontalAlignment="Right" Margin="5,0,5,0">
+						<Path MouseLeftButtonDown="{local:EventBinding TogglePinCommand}" Cursor="Hand" VerticalAlignment="Center" Style="{StaticResource PinIcon}" />
+						<views:IconButton Command="{Binding DataContext.CloseConversationCommand, RelativeSource={RelativeSource AncestorType={x:Type ListBox}}}"
+							CommandParameter="{Binding}" Geometry="{x:Static local:Icons.Close}" StrokeThickness="2" VerticalAlignment="Center" Margin="5,0,0,0" />
+					</StackPanel>
+				</DockPanel>
+			</DataTemplate>
+			<DataTemplate DataType="{x:Type viewModels:HomeTabViewModel}">
+				<TextBlock Text="{Binding Name}" />
+			</DataTemplate>
+		</ListBox.Resources>
+		<ListBox.GroupStyle>
+			<GroupStyle>
+				<GroupStyle.ContainerStyle>
+					<Style TargetType="{x:Type GroupItem}">
+						<Style.Triggers>
+							<DataTrigger Binding="{Binding Name}" Value="{x:Null}">
+								<Setter Property="Template">
+									<Setter.Value>
+										<ControlTemplate>
+											<ItemsPresenter />
+										</ControlTemplate>
+									</Setter.Value>
+								</Setter>
+							</DataTrigger>
+							<DataTrigger Binding="{Binding Name.IsChannels}" Value="False">
+								<Setter Property="Template">
+									<Setter.Value>
+										<ControlTemplate>
+											<StackPanel Margin="0,5,0,0">
+												<TextBlock Text="{Binding Name.Name}" FontWeight="Bold" />
+												<ItemsPresenter />
+											</StackPanel>
+										</ControlTemplate>
+									</Setter.Value>
+								</Setter>
+							</DataTrigger>
+						</Style.Triggers>
+						<Setter Property="Template">
+							<Setter.Value>
+								<ControlTemplate>
+									<StackPanel Margin="0,5,0,0">
+										<StackPanel Orientation="Horizontal">
+											<TextBlock Text="{Binding Name.Name}" FontWeight="Bold" />
+											<Button Margin="10,0,0,0" Click="ManageChannelsButtonClicked" Style="{StaticResource PrimaryButton}">List</Button>
+										</StackPanel>
+										<ItemsPresenter />
+									</StackPanel>
+								</ControlTemplate>
+							</Setter.Value>
+						</Setter>
+					</Style>
+				</GroupStyle.ContainerStyle>
+			</GroupStyle>
+		</ListBox.GroupStyle>
+	</ListBox>
+</UserControl>

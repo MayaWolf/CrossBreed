@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+  xmlns:android="http://schemas.android.com/apk/res/android"
+  xmlns:local="http://schemas.android.com/apk/res-auto"
+  android:orientation="vertical"
+  android:layout_width="match_parent"
+  android:layout_height="wrap_content">
+  <android.support.design.widget.TabLayout
+    android:id="@+id/tabs"
+    android:layout_height="wrap_content"
+    android:layout_width="match_parent"
+    android:background="?colorPrimary"
+    local:tabTextColor="?primaryTextColor"
+    local:tabSelectedTextColor="?primaryTextColor" />
+  <FrameLayout
+    android:id="@android:id/content"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:layout_below="@+id/tabs"
+    android:layout_above="@+id/filter">
+    <Mvx.MvxListView
+      android:id="@+id/list"
+      android:layout_width="match_parent"
+      android:layout_height="match_parent"
+      android:choiceMode="singleChoice"
+      local:MvxBind="ItemsSource SelectedTab.Characters; SelectedItem SelectedCharacter"
+      local:MvxItemTemplate="@layout/list_item_character_image" />
+  </FrameLayout>
+  <SearchView
+    android:id="@+id/filter"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_alignParentBottom="true"
+    android:iconifiedByDefault="false"
+    local:MvxBind="Query SelectedTab.FilterText" />
+</RelativeLayout>

@@ -1,0 +1,5 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android" xmlns:local="http://schemas.android.com/apk/res-auto">
+	<item android:id="@+id/chat" android:icon="@drawable/ic_chat_black_24dp" android:title="[Character_OpenChat]" local:showAsAction="ifRoom" />
+	<item android:id="@+id/profile" android:icon="@drawable/ic_account_box_black_24dp" android:title="[Character_OpenProfile]" local:showAsAction="ifRoom" />
+</menu>

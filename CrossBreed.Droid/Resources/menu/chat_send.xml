@@ -1,0 +1,6 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+  <item android:id="@+id/preview" android:title="[Chat_Preview]" />
+  <item android:id="@+id/ad" android:title="[Chat_SendAd]" />
+  <item android:id="@+id/autoAd" android:title="[Chat_SendAdAuto]" />
+</menu>

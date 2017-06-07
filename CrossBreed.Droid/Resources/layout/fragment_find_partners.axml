@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+  xmlns:android="http://schemas.android.com/apk/res/android"
+  xmlns:local="http://schemas.android.com/apk/res-auto"
+  android:layout_width="match_parent"
+  android:layout_height="match_parent"
+  android:padding="10dp">
+  <LinearLayout
+    android:id="@+id/fields"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+    <TextView
+      android:layout_width="match_parent"
+      android:layout_height="wrap_content"
+      android:textAppearance="?android:textAppearanceMedium"
+      local:MvxBind="Text [FindPartners_Kinks]" />
+    <ML.Droid.Base.MultiSelectSpinner
+      android:layout_width="match_parent"
+      android:layout_height="wrap_content"
+      local:MvxBind="ItemsSource SearchFields.Kinks; SelectedItems SelectedKinks, Mode=OneWayToSource; EmptyText [FindPartners_NoneSelected]" />
+    <TextView
+      android:layout_width="match_parent"
+      android:layout_height="wrap_content"
+      android:textAppearance="?android:textAppearanceMedium"
+      android:layout_marginTop="10dp"
+      local:MvxBind="Text [FindPartners_Genders]" />
+    <ML.Droid.Base.MultiSelectSpinner
+      android:layout_width="match_parent"
+      android:layout_height="wrap_content"
+      local:MvxBind="ItemsSource SearchFields.Genders; SelectedItems SelectedGenders, Mode=OneWayToSource; EmptyText [FindPartners_NoneSelected]" />
+    <TextView
+      android:layout_width="match_parent"
+      android:layout_height="wrap_content"
+      android:textAppearance="?android:textAppearanceMedium"
+      android:layout_marginTop="10dp"
+      local:MvxBind="Text [FindPartners_Roles]" />
+    <ML.Droid.Base.MultiSelectSpinner
+      android:layout_width="match_parent"
+      android:layout_height="wrap_content"
+      local:MvxBind="ItemsSource SearchFields.Roles; SelectedItems SelectedRoles, Mode=OneWayToSource; EmptyText [FindPartners_NoneSelected]" />
+    <TextView
+      android:layout_width="match_parent"
+      android:layout_height="wrap_content"
+      android:textAppearance="?android:textAppearanceMedium"
+      android:layout_marginTop="10dp"
+      local:MvxBind="Text [FindPartners_Positions]" />
+    <ML.Droid.Base.MultiSelectSpinner
+      android:layout_width="match_parent"
+      android:layout_height="wrap_content"
+      local:MvxBind="ItemsSource SearchFields.Positions; SelectedItems SelectedPositions, Mode=OneWayToSource; EmptyText [FindPartners_NoneSelected]" />
+    <TextView
+      android:layout_width="match_parent"
+      android:layout_height="wrap_content"
+      android:textAppearance="?android:textAppearanceMedium"
+      android:layout_marginTop="10dp"
+      local:MvxBind="Text [FindPartners_FurryPrefs]" />
+    <ML.Droid.Base.MultiSelectSpinner
+      android:layout_width="match_parent"
+      android:layout_height="wrap_content"
+      local:MvxBind="ItemsSource SearchFields.FurryPrefs; SelectedItems SelectedFurryPrefs, Mode=OneWayToSource; EmptyText [FindPartners_NoneSelected]" />
+    <TextView
+      android:layout_width="match_parent"
+      android:layout_height="wrap_content"
+      android:textAppearance="?android:textAppearanceMedium"
+      android:layout_marginTop="10dp"
+      local:MvxBind="Text [FindPartners_Languages]" />
+    <ML.Droid.Base.MultiSelectSpinner
+      android:layout_width="match_parent"
+      android:layout_height="wrap_content"
+      local:MvxBind="ItemsSource SearchFields.Languages; SelectedItems SelectedLanguages, Mode=OneWayToSource; EmptyText [FindPartners_NoneSelected]" />
+  </LinearLayout>
+  <Button
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:layout_below="@+id/fields"
+    android:layout_alignParentEnd="true"
+    android:layout_marginTop="10dp"
+    local:MvxBind="Text [FindPartners_Search]; Click SearchCommand" />
+</RelativeLayout>

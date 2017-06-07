@@ -1,0 +1,79 @@
+﻿<mvx:MvxWpfView
+    x:TypeArguments="viewModels:LoginViewModel"
+    x:Class="CrossBreed.Windows.Views.LoginView"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:local="clr-namespace:CrossBreed.Windows"
+    xmlns:viewModels="clr-namespace:CrossBreed.ViewModels;assembly=CrossBreed.ViewModels"
+    xmlns:mvx="clr-namespace:MvvmCross.Wpf.Views;assembly=MvvmCross.Wpf"
+    xmlns:views="clr-namespace:CrossBreed.Windows.Views"
+    mc:Ignorable="d"
+    x:Name="this"
+    d:DataContext="{d:DesignInstance viewModels:LoginViewModel}"
+    d:DesignHeight="300" d:DesignWidth="300">
+    <Grid>
+        <Popup Placement="Center" x:Name="UpdatePopup" StaysOpen="False">
+            <ContentControl Style="{StaticResource PopupContentStyle}">
+                <StackPanel DataContext="{Binding ElementName=this}">
+                    <TextBlock FontSize="{DynamicResource Theme.FontSizeBig}" Text="{x:Static local:WindowsStrings.Updater_Title}" />
+                    <TextBlock Text="{Binding Update.Data.VersionName}" />
+                    <TextBlock Text="{x:Static local:WindowsStrings.Updater_Changelog}" Margin="0,10,0,0" />
+                    <ScrollViewer MaxHeight="300" HorizontalScrollBarVisibility="Disabled" VerticalScrollBarVisibility="Auto">
+                        <views:BbCodeView BbCode="{Binding Update.Changelog}" TextWrapping="Wrap" />
+                    </ScrollViewer>
+                    <Button Style="{StaticResource PrimaryButton}" Click="DoUpdateButtonClicked" Content="{x:Static local:WindowsStrings.Updater_Download}"
+                        Margin="0,10,0,0" HorizontalAlignment="Center" />
+                </StackPanel>
+            </ContentControl>
+        </Popup>
+        <DockPanel Width="500" Margin="20">
+            <StackPanel HorizontalAlignment="Stretch" DockPanel.Dock="Top">
+                <Button Visibility="{Binding Update, ElementName=this, Converter={StaticResource VisibilityConverter}}" Style="{StaticResource PrimaryButton}"
+                    FontSize="{DynamicResource Theme.FontSizeBig}" Margin="0,0,0,20" Content="{x:Static local:WindowsStrings.Updater_Title}" HorizontalAlignment="Center"
+                    Click="UpdateButtonClicked" />
+                <TextBlock Text="{Binding [Login_Name]}" />
+                <TextBox Text="{Binding LoginName}" />
+                <TextBlock Text="{Binding [Login_Password]}" Margin="0,5,0,0" />
+                <PasswordBox x:Name="PasswordBox" PasswordChanged="PasswordChanged" />
+                <TextBlock Text="{Binding [Login_Host]}" Margin="0,5,0,0" />
+                <TextBox Text="{Binding Host}" />
+                <CheckBox IsChecked="{Binding SaveLogin}" Content="{Binding [Login_SaveLogin]}" Margin="0,5,0,0" />
+                <Button HorizontalAlignment="Center" Padding="5" Style="{StaticResource PrimaryButton}" Margin="0,5,0,0" Click="{local:EventBinding Command=LoginCommand}"
+                    Content="{Binding [Login_LoginButton]}" />
+                <ProgressBar HorizontalAlignment="Center" Visibility="{Binding LoggingIn, Converter={StaticResource VisibilityConverter}}" Height="10" IsIndeterminate="True"
+                    Width="300" Margin="0,20,0,0" />
+                <TextBlock Foreground="{DynamicResource Theme.AccentColor}" Margin="0,10,0,0" Text="{Binding LoginError}"
+                    Visibility="{Binding LoginError, Converter={StaticResource VisibilityConverter}}" TextAlignment="Center" TextWrapping="WrapWithOverflow" />
+            </StackPanel>
+            <ListBox Margin="0,20,0,0" HorizontalAlignment="Center" Visibility="{Binding Characters, Converter={StaticResource VisibilityConverter}}"
+                ItemsSource="{Binding Characters}">
+                <ListBox.Template>
+                    <ControlTemplate>
+                        <ScrollViewer HorizontalScrollBarVisibility="Disabled">
+                            <WrapPanel Width="{TemplateBinding Width}" Height="{TemplateBinding Height}" FlowDirection="LeftToRight" IsItemsHost="true" />
+                        </ScrollViewer>
+                    </ControlTemplate>
+                </ListBox.Template>
+                <ListBox.ItemTemplate>
+                    <DataTemplate>
+                        <StackPanel Margin="5" MouseLeftButtonDown="CharacterClick" Cursor="Hand">
+                            <Image Source="{Binding Image}" Height="80" Width="80" HorizontalAlignment="Center" />
+                            <TextBlock Text="{Binding Name}" HorizontalAlignment="Center" />
+                        </StackPanel>
+                    </DataTemplate>
+                </ListBox.ItemTemplate>
+            </ListBox>
+        </DockPanel>
+        <Border Background="{DynamicResource Theme.AccentColorLight}" Visibility="{Binding Connecting, Converter={StaticResource VisibilityConverter}}">
+            <Border Background="{DynamicResource Theme.Background}" BorderBrush="{DynamicResource Theme.AccentColor}" BorderThickness="3"
+                Width="200" Padding="10" VerticalAlignment="Center">
+                <StackPanel HorizontalAlignment="Stretch">
+                    <TextBlock Text="{Binding [Login_Connecting]}" FontSize="{DynamicResource Theme.FontSizeBig}" />
+                    <ProgressBar Margin="0,10,0,0" Height="15" IsIndeterminate="True" />
+                </StackPanel>
+            </Border>
+        </Border>
+    </Grid>
+</mvx:MvxWpfView>

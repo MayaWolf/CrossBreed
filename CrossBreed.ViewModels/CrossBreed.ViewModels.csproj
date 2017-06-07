@@ -1,0 +1,63 @@
+﻿<Project Sdk="Microsoft.NET.Sdk" ToolsVersion="15.0">
+  <PropertyGroup>
+	<TargetFramework>.NETPortable,Version=v4.6,Profile=Profile44</TargetFramework>
+    <TargetFrameworkIdentifier>.NETPortable</TargetFrameworkIdentifier>
+    <TargetFrameworkVersion>v4.6</TargetFrameworkVersion>
+    <TargetFrameworkProfile>Profile44</TargetFrameworkProfile>
+    <GenerateAssemblyTitleAttribute>false</GenerateAssemblyTitleAttribute>
+    <GenerateAssemblyDescriptionAttribute>false</GenerateAssemblyDescriptionAttribute>
+    <GenerateAssemblyConfigurationAttribute>false</GenerateAssemblyConfigurationAttribute>
+    <GenerateAssemblyCompanyAttribute>false</GenerateAssemblyCompanyAttribute>
+    <GenerateAssemblyProductAttribute>false</GenerateAssemblyProductAttribute>
+    <GenerateAssemblyCopyrightAttribute>false</GenerateAssemblyCopyrightAttribute>
+    <GenerateNeutralResourcesLanguageAttribute>false</GenerateNeutralResourcesLanguageAttribute>
+    <GenerateAssemblyVersionAttribute>false</GenerateAssemblyVersionAttribute>
+    <GenerateAssemblyFileVersionAttribute>false</GenerateAssemblyFileVersionAttribute>
+    <ProjectGuid>{39DEB541-8459-4549-AC6D-F420F9012AC1}</ProjectGuid>
+  </PropertyGroup>
+  <ItemGroup>
+    <PackageReference Include="Fody" Version="2.1.0" />
+    <PackageReference Include="MvvmCross.Core" Version="5.0.1" />
+    <PackageReference Include="MvvmCross.Platform" Version="5.0.1" />
+    <PackageReference Include="MvvmCross.Plugin.File" Version="5.0.1" />
+    <PackageReference Include="MvvmCross.Plugin.Messenger" Version="5.0.1" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\CodeKicker.BBCode\CodeKicker.BBCode.csproj" />
+    <ProjectReference Include="..\CrossBreed.Chat\CrossBreed.Chat.csproj" />
+    <ProjectReference Include="..\CrossBreed.Entities\CrossBreed.Entities.csproj" />
+  </ItemGroup>
+  <ItemGroup>
+    <Reference Include="ML.AppBase">
+      <HintPath>..\Lib\ML.AppBase.dll</HintPath>
+    </Reference>
+    <Reference Include="ML.Collections">
+      <HintPath>..\Lib\ML.Collections.dll</HintPath>
+    </Reference>
+    <Reference Include="ML.Settings">
+      <HintPath>..\Lib\ML.Settings.dll</HintPath>
+    </Reference>
+    <Reference Include="PropertyChanged">
+      <HintPath>..\Lib\PropertyChanged.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Collections" />
+    <Reference Include="System.Diagnostics.Debug" />
+    <Reference Include="System.Diagnostics.Tools" />
+    <Reference Include="System.Dynamic.Runtime" />
+    <Reference Include="System.Globalization" />
+    <Reference Include="System.IO" />
+    <Reference Include="System.Linq" />
+    <Reference Include="System.Linq.Expressions" />
+    <Reference Include="System.ObjectModel" />
+    <Reference Include="System.Reflection" />
+    <Reference Include="System.Resources.ResourceManager" />
+    <Reference Include="System.Runtime" />
+    <Reference Include="System.Runtime.Extensions" />
+    <Reference Include="System.Text.Encoding" />
+    <Reference Include="System.Text.Encoding.Extensions" />
+    <Reference Include="System.Text.RegularExpressions" />
+    <Reference Include="System.Threading" />
+    <Reference Include="System.Threading.Tasks" />
+    <Reference Include="System.Threading.Timer" />
+  </ItemGroup>
+</Project>

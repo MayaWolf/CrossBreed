@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView
+  xmlns:android="http://schemas.android.com/apk/res/android"
+  xmlns:local="http://schemas.android.com/apk/res-auto"
+  android:layout_width="match_parent"
+  android:layout_height="match_parent">
+  <LinearLayout
+    android:id="@+id/profile"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:padding="5dp">
+    <LinearLayout
+      android:layout_width="match_parent"
+      android:layout_height="wrap_content"
+      android:layout_marginBottom="5dp">
+      <Mvx.MvxImageView
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        local:MvxBind="ImageUrl Image" />
+      <LinearLayout
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:layout_marginStart="10dp"
+        android:orientation="vertical">
+        <TextView
+          android:layout_width="match_parent"
+          android:layout_height="wrap_content"
+          android:textAppearance="?android:textAppearanceLarge"
+          local:MvxBind="Text Character.Name" />
+        <TextView
+          android:layout_width="match_parent"
+          android:layout_height="wrap_content"
+          android:textStyle="italic"
+          local:MvxBind="Text Profile.CustomTitle; Visible Profile.CustomTitle" />
+        <TextView
+          android:layout_width="match_parent"
+          android:layout_height="wrap_content"
+          android:textAppearance="?android:textAppearanceMedium"
+          local:MvxBind="Text LocalizedGender; TextColor GenderColor" />
+        <TextView
+          android:layout_width="match_parent"
+          android:layout_height="wrap_content"
+          android:textAppearance="?android:textAppearanceMedium"
+          local:MvxBind="Text LocalizedStatus" />
+        <TextView
+          android:layout_width="match_parent"
+          android:layout_height="wrap_content"
+          android:textAppearance="?android:textAppearanceMedium"
+          local:MvxBind="Text Character.StatusMessage" />
+      </LinearLayout>
+    </LinearLayout>
+    <ProgressBar
+      android:layout_width="match_parent"
+      android:layout_height="wrap_content"
+      android:layout_marginTop="10dp"
+      style="?android:progressBarStyleLarge" />
+  </LinearLayout>
+</ScrollView>

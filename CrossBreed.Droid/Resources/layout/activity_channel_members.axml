@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Mvx.MvxListView
+  xmlns:android="http://schemas.android.com/apk/res/android"
+  xmlns:local="http://schemas.android.com/apk/res-auto"
+  android:id="@+id/list"
+  android:layout_width="match_parent"
+  android:layout_height="match_parent"
+  android:choiceMode="singleChoice"
+  local:MvxBind="ItemsSource Members; SelectedItem SelectedMember"
+  local:MvxItemTemplate="@layout/list_item_character" />

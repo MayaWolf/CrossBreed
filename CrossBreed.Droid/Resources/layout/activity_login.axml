@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+  xmlns:android="http://schemas.android.com/apk/res/android"
+  xmlns:local="http://schemas.android.com/apk/res-auto"
+  android:padding="5dp">
+  <LinearLayout
+    android:id="@+id/loginFields"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+    <android.support.design.widget.TextInputLayout
+      android:layout_width="match_parent"
+      android:layout_height="wrap_content">
+      <EditText
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        local:MvxBind="Text LoginName; Hint [Login_Name]" />
+    </android.support.design.widget.TextInputLayout>
+    <android.support.design.widget.TextInputLayout
+      android:layout_width="match_parent"
+      android:layout_height="wrap_content">
+      <EditText
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:inputType="textPassword"
+        local:MvxBind="Text Password; Hint [Login_Password]" />
+    </android.support.design.widget.TextInputLayout>
+    <android.support.design.widget.TextInputLayout
+      android:layout_width="match_parent"
+      android:layout_height="wrap_content">
+      <EditText
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        local:MvxBind="Text Host; Hint [Login_Host]" />
+    </android.support.design.widget.TextInputLayout>
+    <CheckBox
+      android:layout_width="match_parent"
+      android:layout_height="wrap_content"
+      local:MvxBind="Text [Login_SaveLogin]; Checked SaveLogin" />
+  </LinearLayout>
+  <Button
+    android:id="@+id/loginButton"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:layout_alignParentEnd="true"
+    android:layout_below="@+id/loginFields"
+    local:MvxBind="Click LoginCommand; Text [Login_LoginButton]" />
+  <ProgressBar
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:layout_alignParentBottom="true"
+    android:layout_centerInParent="true"
+    android:layout_below="@+id/loginButton"
+    style="?android:progressBarStyleLarge"
+    local:MvxBind="Visible LoggingIn" />
+  <Mvx.MvxListView
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:layout_alignParentBottom="true"
+    android:layout_below="@+id/loginButton"
+    local:MvxBind="ItemsSource Characters; ItemClick CharacterSelected"
+    local:MvxItemTemplate="@layout/list_item_login_character" />
+</RelativeLayout>

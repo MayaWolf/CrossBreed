@@ -1,0 +1,24 @@
+﻿<Window
+	x:Class="CrossBreed.Windows.Views.NotificationWindow"
+	xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+	xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+	xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+	xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+	xmlns:local="clr-namespace:CrossBreed.Windows"
+	xmlns:views="clr-namespace:CrossBreed.Windows.Views"
+	mc:Ignorable="d"
+	ShowActivated="False"
+	Width="300" SizeToContent="Height"
+	ShowInTaskbar="False" WindowStyle="None" BorderBrush="{DynamicResource Theme.AccentColor}" BorderThickness="1" AllowsTransparency="True"
+	x:Name="this" ResizeMode="NoResize" Background="{DynamicResource Theme.Background}" Topmost="True">
+	<StackPanel HorizontalAlignment="Stretch" Margin="10">
+		<DockPanel HorizontalAlignment="Stretch">
+			<views:IconButton Margin="5,0,0,0" Click="CloseButtonClicked" Geometry="{x:Static local:Icons.Close}" StrokeThickness="2" DockPanel.Dock="Right" />
+			<TextBlock FontSize="18" Text="{Binding Title, ElementName=this}" Foreground="{DynamicResource Theme.Foreground}" TextTrimming="CharacterEllipsis" />
+		</DockPanel>
+		<DockPanel>
+			<Image DockPanel.Dock="Left" Width="40" Height="40" x:Name="Image" />
+			<views:BbCodeView Margin="5,0,0,0" x:Name="MessageView" TextWrapping="Wrap" />
+		</DockPanel>
+	</StackPanel>
+</Window>

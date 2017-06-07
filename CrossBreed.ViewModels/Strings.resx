@@ -1,0 +1,674 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <!-- 
+    Microsoft ResX Schema 
+    
+    Version 2.0
+    
+    The primary goals of this format is to allow a simple XML format 
+    that is mostly human readable. The generation and parsing of the 
+    various data types are done through the TypeConverter classes 
+    associated with the data types.
+    
+    Example:
+    
+    ... ado.net/XML headers & schema ...
+    <resheader name="resmimetype">text/microsoft-resx</resheader>
+    <resheader name="version">2.0</resheader>
+    <resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
+    <resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
+    <data name="Name1"><value>this is my long string</value><comment>this is a comment</comment></data>
+    <data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
+    <data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
+        <value>[base64 mime encoded serialized .NET Framework object]</value>
+    </data>
+    <data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+        <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
+        <comment>This is a comment</comment>
+    </data>
+                
+    There are any number of "resheader" rows that contain simple 
+    name/value pairs.
+    
+    Each data row contains a name, and value. The row also contains a 
+    type or mimetype. Type corresponds to a .NET class that support 
+    text/value conversion through the TypeConverter architecture. 
+    Classes that don't support this are serialized and stored with the 
+    mimetype set.
+    
+    The mimetype is used for serialized objects, and tells the 
+    ResXResourceReader how to depersist the object. This is currently not 
+    extensible. For a given mimetype the value must be set accordingly:
+    
+    Note - application/x-microsoft.net.object.binary.base64 is the format 
+    that the ResXResourceWriter will generate, however the reader can 
+    read any of the formats listed below.
+    
+    mimetype: application/x-microsoft.net.object.binary.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
+            : and then encoded with base64 encoding.
+    
+    mimetype: application/x-microsoft.net.object.soap.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
+            : and then encoded with base64 encoding.
+
+    mimetype: application/x-microsoft.net.object.bytearray.base64
+    value   : The object must be serialized into a byte array 
+            : using a System.ComponentModel.TypeConverter
+            : and then encoded with base64 encoding.
+    -->
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="Channels_Private" xml:space="preserve">
+    <value>Unofficial</value>
+  </data>
+  <data name="Channels_Public" xml:space="preserve">
+    <value>Official</value>
+  </data>
+  <data name="Character_BookmarkAdd" xml:space="preserve">
+    <value>Bookmark</value>
+  </data>
+  <data name="Character_BookmarkRemove" xml:space="preserve">
+    <value>Unbookmark</value>
+  </data>
+  <data name="Character_FriendAccept" xml:space="preserve">
+    <value>Accept friendship</value>
+  </data>
+  <data name="Character_FriendCancel" xml:space="preserve">
+    <value>Cancel friend request</value>
+  </data>
+  <data name="Character_FriendDelete" xml:space="preserve">
+    <value>Delete friend</value>
+  </data>
+  <data name="Character_FriendDeny" xml:space="preserve">
+    <value>Deny friendship</value>
+  </data>
+  <data name="Character_FriendRequest" xml:space="preserve">
+    <value>Request friendship</value>
+  </data>
+  <data name="Chat_Send" xml:space="preserve">
+    <value>Send</value>
+  </data>
+  <data name="Gender_Cuntboy" xml:space="preserve">
+    <value>Cunt-Boy</value>
+  </data>
+  <data name="Gender_Female" xml:space="preserve">
+    <value>Female</value>
+  </data>
+  <data name="Gender_Herm" xml:space="preserve">
+    <value>Herm</value>
+  </data>
+  <data name="Gender_Male" xml:space="preserve">
+    <value>Male</value>
+  </data>
+  <data name="Gender_Maleherm" xml:space="preserve">
+    <value>Male-Herm</value>
+  </data>
+  <data name="Gender_None" xml:space="preserve">
+    <value>No gender</value>
+  </data>
+  <data name="Gender_Shemale" xml:space="preserve">
+    <value>Shemale</value>
+  </data>
+  <data name="Gender_Transgender" xml:space="preserve">
+    <value>Transgender</value>
+  </data>
+  <data name="Login_LoginButton" xml:space="preserve">
+    <value>Login</value>
+  </data>
+  <data name="Login_Name" xml:space="preserve">
+    <value>Username</value>
+  </data>
+  <data name="Login_Password" xml:space="preserve">
+    <value>Password</value>
+  </data>
+  <data name="Events_Message_TextMany" xml:space="preserve">
+    <value>Tap here to view</value>
+  </data>
+  <data name="Events_Message_TitleMany" xml:space="preserve">
+    <value>{0} new messages</value>
+  </data>
+  <data name="Events_Message_TitleOne" xml:space="preserve">
+    <value>{0} has sent you a message!</value>
+  </data>
+  <data name="People_All" xml:space="preserve">
+    <value>All</value>
+  </data>
+  <data name="People_Bookmarks" xml:space="preserve">
+    <value>Bookmarks</value>
+  </data>
+  <data name="People_Friends" xml:space="preserve">
+    <value>Friends</value>
+  </data>
+  <data name="Character_OpenChat" xml:space="preserve">
+    <value>Message</value>
+  </data>
+  <data name="Character_OpenProfile" xml:space="preserve">
+    <value>Profile</value>
+  </data>
+  <data name="Status_Away" xml:space="preserve">
+    <value>Away</value>
+  </data>
+  <data name="Status_Busy" xml:space="preserve">
+    <value>Busy</value>
+  </data>
+  <data name="Status_DND" xml:space="preserve">
+    <value>Do Not Disturb</value>
+  </data>
+  <data name="Status_Idle" xml:space="preserve">
+    <value>Idle</value>
+  </data>
+  <data name="Status_Looking" xml:space="preserve">
+    <value>Looking For Play</value>
+  </data>
+  <data name="Status_Online" xml:space="preserve">
+    <value>Online</value>
+  </data>
+  <data name="Tab_Chat" xml:space="preserve">
+    <value>Chat</value>
+  </data>
+  <data name="Tab_Settings" xml:space="preserve">
+    <value>Settings</value>
+  </data>
+  <data name="Tab_Channels" xml:space="preserve">
+    <value>Channels</value>
+  </data>
+  <data name="Tab_People" xml:space="preserve">
+    <value>People</value>
+  </data>
+  <data name="Events_ViewMessage" xml:space="preserve">
+    <value>View</value>
+  </data>
+  <data name="Channel_Leave" xml:space="preserve">
+    <value>Leave</value>
+  </data>
+  <data name="Channel_MemberList" xml:space="preserve">
+    <value>Members</value>
+  </data>
+  <data name="Chat_Home" xml:space="preserve">
+    <value>Home</value>
+  </data>
+  <data name="Login_Connecting" xml:space="preserve">
+    <value>Connecting</value>
+  </data>
+  <data name="Login_Host" xml:space="preserve">
+    <value>Host</value>
+  </data>
+  <data name="Login_SaveLogin" xml:space="preserve">
+    <value>Save login</value>
+  </data>
+  <data name="Channels_Create" xml:space="preserve">
+    <value>Create channel</value>
+  </data>
+  <data name="Channels_CreateName" xml:space="preserve">
+    <value>Channel name</value>
+  </data>
+  <data name="General_PleaseWait" xml:space="preserve">
+    <value>Please wait...</value>
+  </data>
+  <data name="SetStatus_StatusText" xml:space="preserve">
+    <value>Status text</value>
+  </data>
+  <data name="SetStatus_Title" xml:space="preserve">
+    <value>Set status</value>
+  </data>
+  <data name="Profile_Friends" xml:space="preserve">
+    <value>Friends</value>
+  </data>
+  <data name="Profile_Friends_StatusFriends" xml:space="preserve">
+    <value>is friends with {0}</value>
+  </data>
+  <data name="Profile_Friends_StatusIncoming" xml:space="preserve">
+    <value>has sent a friend request to {0}</value>
+  </data>
+  <data name="Profile_Friends_StatusNone" xml:space="preserve">
+    <value>has no relationship with {0}</value>
+  </data>
+  <data name="Profile_Friends_StatusOutgoing" xml:space="preserve">
+    <value>has a pending friend request from {0}</value>
+  </data>
+  <data name="Profile_Kinks" xml:space="preserve">
+    <value>Kinks</value>
+  </data>
+  <data name="Profile_Profile" xml:space="preserve">
+    <value>Profile</value>
+  </data>
+  <data name="Settings_Group_CrossBreed.Chat.AppSettings/LoggingSettings" xml:space="preserve">
+    <value>Logging</value>
+  </data>
+  <data name="Settings_Group_CrossBreed.ViewModels.UserSettings/NotificationsSettings" xml:space="preserve">
+    <value>Notifications</value>
+  </data>
+  <data name="Settings_Title_CrossBreed.Chat.AppSettings/LoggingSettings.LogChannels" xml:space="preserve">
+    <value>Log channel messages</value>
+  </data>
+  <data name="Settings_Title_CrossBreed.ViewModels.UserSettings/NotificationsSettings.NotifyPrivate" xml:space="preserve">
+    <value>Notify for private messages</value>
+  </data>
+  <data name="Settings_Title_CrossBreed.ViewModels.UserSettings/NotificationsSettings.Vibrate" xml:space="preserve">
+    <value>Vibrate with notifications</value>
+  </data>
+  <data name="Settings_Title_CrossBreed.Chat.AppSettings/LoggingSettings.LogPrivate" xml:space="preserve">
+    <value>Log private messages</value>
+  </data>
+  <data name="Chat_Preview" xml:space="preserve">
+    <value>Preview BBCode</value>
+  </data>
+  <data name="Chat_SendAd" xml:space="preserve">
+    <value>Send ad</value>
+  </data>
+  <data name="Chat_SendAdAuto" xml:space="preserve">
+    <value>Automatically repost ad</value>
+  </data>
+  <data name="Channel_AddOp" xml:space="preserve">
+    <value>Promote to OP</value>
+  </data>
+  <data name="Channel_Ban" xml:space="preserve">
+    <value>Ban</value>
+  </data>
+  <data name="Channel_Kick" xml:space="preserve">
+    <value>Kick</value>
+  </data>
+  <data name="Channel_RemoveOp" xml:space="preserve">
+    <value>Demote OP</value>
+  </data>
+  <data name="Character_AddOp" xml:space="preserve">
+    <value>Promote to ChatOP</value>
+  </data>
+  <data name="Character_Ban" xml:space="preserve">
+    <value>Ban from server</value>
+  </data>
+  <data name="Character_Kick" xml:space="preserve">
+    <value>Kick from server</value>
+  </data>
+  <data name="Character_RemoveOp" xml:space="preserve">
+    <value>Demote ChatOP</value>
+  </data>
+  <data name="Profile_OpenInBrowser" xml:space="preserve">
+    <value>Open in browser</value>
+  </data>
+  <data name="Profile_Quote" xml:space="preserve">
+    <value>Quote:</value>
+  </data>
+  <data name="Character_Ignore" xml:space="preserve">
+    <value>Ignore</value>
+  </data>
+  <data name="Character_UnIgnore" xml:space="preserve">
+    <value>Unignore</value>
+  </data>
+  <data name="Chat_ShowAds" xml:space="preserve">
+    <value>Show ads</value>
+  </data>
+  <data name="Chat_ShowMessages" xml:space="preserve">
+    <value>Show messages</value>
+  </data>
+  <data name="FindPartners_NoneSelected" xml:space="preserve">
+    <value>Any</value>
+  </data>
+  <data name="Tab_FindPartners" xml:space="preserve">
+    <value>Find partners</value>
+  </data>
+  <data name="Events_Broadcast" xml:space="preserve">
+    <value>{0} has broadcast: {1}</value>
+  </data>
+  <data name="Events_CharacterOffline" xml:space="preserve">
+    <value>{0} has gone offline.</value>
+  </data>
+  <data name="Events_CharacterOnline" xml:space="preserve">
+    <value>{0} has come online.</value>
+  </data>
+  <data name="Events_MessageCharacter" xml:space="preserve">
+    <value>Message</value>
+  </data>
+  <data name="Chat_Close" xml:space="preserve">
+    <value>Close conversation</value>
+  </data>
+  <data name="Events_Broadcast_Notification" xml:space="preserve">
+    <value>New server broadcast</value>
+  </data>
+  <data name="Profile_Info" xml:space="preserve">
+    <value>Info</value>
+  </data>
+  <data name="Events_Error" xml:space="preserve">
+    <value>Error: {0}</value>
+  </data>
+  <data name="Events_Status" xml:space="preserve">
+    <value>{0} is now {1}.</value>
+  </data>
+  <data name="Events_Status_Message" xml:space="preserve">
+    <value>{0} is now {1} ({2}).</value>
+  </data>
+  <data name="FindPartners_FurryPrefs" xml:space="preserve">
+    <value>Furry preferences</value>
+  </data>
+  <data name="FindPartners_Genders" xml:space="preserve">
+    <value>Genders</value>
+  </data>
+  <data name="FindPartners_Kinks" xml:space="preserve">
+    <value>Kinks</value>
+  </data>
+  <data name="FindPartners_Languages" xml:space="preserve">
+    <value>Languages</value>
+  </data>
+  <data name="FindPartners_Orientations" xml:space="preserve">
+    <value>Orientations</value>
+  </data>
+  <data name="FindPartners_Positions" xml:space="preserve">
+    <value>Positions</value>
+  </data>
+  <data name="FindPartners_Roles" xml:space="preserve">
+    <value>Dom/Sub roles</value>
+  </data>
+  <data name="FindPartners_Search" xml:space="preserve">
+    <value>Start search</value>
+  </data>
+  <data name="Chat_SaveChannels" xml:space="preserve">
+    <value>Save channel tabs</value>
+  </data>
+  <data name="CharacterLists_Add" xml:space="preserve">
+    <value>Add</value>
+  </data>
+  <data name="CharacterLists_Bookmarks" xml:space="preserve">
+    <value>Bookmarks</value>
+  </data>
+  <data name="CharacterLists_ChannelOps" xml:space="preserve">
+    <value>Channel OPs</value>
+  </data>
+  <data name="CharacterLists_ChatOps" xml:space="preserve">
+    <value>Chat OPs</value>
+  </data>
+  <data name="CharacterLists_Custom" xml:space="preserve">
+    <value>Custom groups</value>
+  </data>
+  <data name="CharacterLists_Default" xml:space="preserve">
+    <value>Default groups</value>
+  </data>
+  <data name="CharacterLists_Friends" xml:space="preserve">
+    <value>Friends</value>
+  </data>
+  <data name="CharacterLists_Help" xml:space="preserve">
+    <value>Groups with empty names will be deleted when you save.
+If a character is not in any groups, they will have a default sorting order of 10.
+If a character is in multiple groups, the highest sort order takes precedence.</value>
+  </data>
+  <data name="CharacterLists_HideAds" xml:space="preserve">
+    <value>Hide ads</value>
+  </data>
+  <data name="CharacterLists_Name" xml:space="preserve">
+    <value>Name</value>
+  </data>
+  <data name="CharacterLists_Save" xml:space="preserve">
+    <value>Save</value>
+  </data>
+  <data name="CharacterLists_SortOrder" xml:space="preserve">
+    <value>Sorting order</value>
+  </data>
+  <data name="CharacterLists_TextColor" xml:space="preserve">
+    <value>Text colour</value>
+  </data>
+  <data name="CharacterLists_UnderlineColor" xml:space="preserve">
+    <value>Underline colour</value>
+  </data>
+  <data name="SetStatus_Button" xml:space="preserve">
+    <value>Set status</value>
+  </data>
+  <data name="Settings_Description_CrossBreed.Chat.UserSettings.General.DisallowedBbCode" xml:space="preserve">
+    <value>Comma-separated list of BBCode tags not to render.</value>
+  </data>
+  <data name="Settings_Group_CrossBreed.ViewModels.UserSettings/GeneralSettings" xml:space="preserve">
+    <value>General</value>
+  </data>
+  <data name="Settings_Title_CrossBreed.ViewModels.UserSettings/GeneralSettings.AutoLink" xml:space="preserve">
+    <value>Automatically wrap pasted links in BBCode</value>
+  </data>
+  <data name="Settings_Title_CrossBreed.ViewModels.UserSettings/GeneralSettings.DisallowedBbCode" xml:space="preserve">
+    <value>Disallowed BBCode tags</value>
+  </data>
+  <data name="Settings_Title_CrossBreed.ViewModels.UserSettings/GeneralSettings.MessagesFromBottom" xml:space="preserve">
+    <value>Display messages from bottom</value>
+  </data>
+  <data name="Settings_Title_CrossBreed.ViewModels.UserSettings/GeneralSettings.UseProfileViewer" xml:space="preserve">
+    <value>Use integrated profile viewer</value>
+  </data>
+  <data name="Settings_Title_CrossBreed.Chat.AppSettings/LoggingSettings.LogDirectory" xml:space="preserve">
+    <value>LogDirectory</value>
+  </data>
+  <data name="Settings_Title_CrossBreed.ViewModels.UserSettings/NotificationsSettings.Toasts" xml:space="preserve">
+    <value>Show toasts</value>
+  </data>
+  <data name="Settings_Title_CrossBreed.ViewModels.UserSettings/NotificationsSettings.HighlightWords" xml:space="preserve">
+    <value>Custom highlight words</value>
+  </data>
+  <data name="Settings_Title_CrossBreed.ViewModels.UserSettings/NotificationsSettings.NotifyConnection" xml:space="preserve">
+    <value>Notify for connect/disconnect</value>
+  </data>
+  <data name="Settings_Title_CrossBreed.ViewModels.UserSettings/NotificationsSettings.NotifyHighlights" xml:space="preserve">
+    <value>Notify for highlights/mentions</value>
+  </data>
+  <data name="Settings_Title_CrossBreed.ViewModels.UserSettings/NotificationsSettings.NotifyStatus" xml:space="preserve">
+    <value>Notify for status changes</value>
+  </data>
+  <data name="Settings_Title_CrossBreed.ViewModels.UserSettings/NotificationsSettings.Sounds" xml:space="preserve">
+    <value>Play sounds</value>
+  </data>
+  <data name="Character_Report" xml:space="preserve">
+    <value>Report</value>
+  </data>
+  <data name="People_Lists" xml:space="preserve">
+    <value>Lists</value>
+  </data>
+  <data name="Character_AddList" xml:space="preserve">
+    <value>Add to list</value>
+  </data>
+  <data name="Character_RemoveList" xml:space="preserve">
+    <value>Remove from list</value>
+  </data>
+  <data name="Chat_CopyLink" xml:space="preserve">
+    <value>Copy link address</value>
+  </data>
+  <data name="Chat_OpenIncognito" xml:space="preserve">
+    <value>Open link in incognito mode</value>
+  </data>
+  <data name="Events_Note" xml:space="preserve">
+    <value>{0} has sent you a note: {1}</value>
+  </data>
+  <data name="Settings_Title_CrossBreed.ViewModels.UserSettings/GeneralSettings.AlwaysIncognito" xml:space="preserve">
+    <value>Always open links in incognito mode</value>
+  </data>
+  <data name="Settings_Title_CrossBreed.ViewModels.UserSettings/GeneralSettings.CloseToTray" xml:space="preserve">
+    <value>Close CrossBreed to tray</value>
+  </data>
+  <data name="Settings_Title_CrossBreed.ViewModels.UserSettings/NotificationsSettings.AlwaysPlaySound" xml:space="preserve">
+    <value>Play sounds even for messages in the displayed tab</value>
+  </data>
+  <data name="ConversationSettings_Log" xml:space="preserve">
+    <value>Log</value>
+  </data>
+  <data name="ConversationSettings_Notify" xml:space="preserve">
+    <value>Notify</value>
+  </data>
+  <data name="ConversationSettings_NotifyAd" xml:space="preserve">
+    <value>For ads</value>
+  </data>
+  <data name="ConversationSettings_NotifyFlash" xml:space="preserve">
+    <value>with window flashes</value>
+  </data>
+  <data name="ConversationSettings_NotifyMessage" xml:space="preserve">
+    <value>For messages</value>
+  </data>
+  <data name="ConversationSettings_NotifySound" xml:space="preserve">
+    <value>with sound</value>
+  </data>
+  <data name="ConversationSettings_NotifyToast" xml:space="preserve">
+    <value>with a toast</value>
+  </data>
+  <data name="ConversationSettings_NotifyUser" xml:space="preserve">
+    <value>For user events (join/leave/etc)</value>
+  </data>
+  <data name="ConversationSettings_Save" xml:space="preserve">
+    <value>Save settings</value>
+  </data>
+  <data name="ConversationSettings_ShowIcon" xml:space="preserve">
+    <value>Show icon</value>
+  </data>
+  <data name="Events_Highlight" xml:space="preserve">
+    <value>You were mentioned in {0}</value>
+  </data>
+  <data name="Events_Highlight_Notification" xml:space="preserve">
+    <value>Mention in {0}</value>
+  </data>
+  <data name="CharacterLists_HideInSearch" xml:space="preserve">
+    <value>Hide in searches</value>
+  </data>
+  <data name="CharacterLists_Title" xml:space="preserve">
+    <value>Character lists</value>
+  </data>
+  <data name="RecentConversations_Title" xml:space="preserve">
+    <value>Recent conversations</value>
+  </data>
+  <data name="RecentConversations_Channels" xml:space="preserve">
+    <value>Channels</value>
+  </data>
+  <data name="RecentConversations_Characters" xml:space="preserve">
+    <value>Characters</value>
+  </data>
+  <data name="Settings_Title_CrossBreed.ViewModels.UserSettings/GeneralSettings.SortCharactersFirst" xml:space="preserve">
+    <value>Sort private conversations before channels</value>
+  </data>
+  <data name="Channel_ModeAds" xml:space="preserve">
+    <value>Ads</value>
+  </data>
+  <data name="Channel_ModeBoth" xml:space="preserve">
+    <value>Both</value>
+  </data>
+  <data name="Channel_ModeChat" xml:space="preserve">
+    <value>Chat</value>
+  </data>
+  <data name="Chat_AutoPosting" xml:space="preserve">
+    <value>Auto-posting ad every 10 minutes. Click the auto-post button to stop.</value>
+  </data>
+  <data name="Settings_Title_CrossBreed.Chat.AppSettings/LoggingSettings.LogAds" xml:space="preserve">
+    <value>Log ads</value>
+  </data>
+  <data name="Events_ChannelJoined" xml:space="preserve">
+    <value>{0} has joined {1}.</value>
+  </data>
+  <data name="Events_ChannelLeft" xml:space="preserve">
+    <value>{0} has left {1}.</value>
+  </data>
+  <data name="Events_Invite" xml:space="preserve">
+    <value>{0} has invited you to {1}.</value>
+  </data>
+  <data name="Events_Sys" xml:space="preserve">
+    <value>[b]System:[/b] {0}</value>
+  </data>
+  <data name="Login_Error" xml:space="preserve">
+    <value>Error while logging in: {0}</value>
+  </data>
+  <data name="Events_RtbComment" xml:space="preserve">
+    <value>{0} commented on your {1}: {2}</value>
+  </data>
+  <data name="Events_RtbCommentReply" xml:space="preserve">
+    <value>{0} replied to your comment on the {1}: {2}</value>
+  </data>
+  <data name="Events_RtbComment_bugreport" xml:space="preserve">
+    <value>bug report</value>
+  </data>
+  <data name="Events_RtbComment_changelog" xml:space="preserve">
+    <value>changelog post</value>
+  </data>
+  <data name="Events_RtbComment_feature" xml:space="preserve">
+    <value>feature request</value>
+  </data>
+  <data name="Events_RtbComment_newspost" xml:space="preserve">
+    <value>news post</value>
+  </data>
+  <data name="Events_Rtb_bugreport" xml:space="preserve">
+    <value>{0} submitted a bug report: {1}</value>
+  </data>
+  <data name="Events_Rtb_featurerequest" xml:space="preserve">
+    <value>{0} submitted a feature request: {1}</value>
+  </data>
+  <data name="Events_Rtb_grouprequest" xml:space="preserve">
+    <value>{0} requested a group named: {1}</value>
+  </data>
+  <data name="Events_Rtb_helpdeskreply" xml:space="preserve">
+    <value>{0} replied to [url={1}]a help desk ticket you are involved in[/url].</value>
+  </data>
+  <data name="Events_Rtb_helpdeskticket" xml:space="preserve">
+    <value>{0} submitted a help desk ticket: {1}</value>
+  </data>
+  <data name="Chat_CommandError" xml:space="preserve">
+    <value>The command you entered is invalid.</value>
+  </data>
+  <data name="CharacterLists_Conflict" xml:space="preserve">
+    <value>It appears you've edited this character list from another instance. Would you like to reload it or overwrite it?</value>
+  </data>
+  <data name="CharacterLists_Conflict_Overwrite" xml:space="preserve">
+    <value>Overwrite</value>
+  </data>
+  <data name="CharacterLists_Conflict_Reload" xml:space="preserve">
+    <value>Reload</value>
+  </data>
+  <data name="Tab_Logs" xml:space="preserve">
+    <value>Logs</value>
+  </data>
+</root>

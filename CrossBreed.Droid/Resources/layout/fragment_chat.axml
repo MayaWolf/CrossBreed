@@ -1,0 +1,45 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+  xmlns:android="http://schemas.android.com/apk/res/android"
+  xmlns:local="http://schemas.android.com/apk/res-auto"
+  android:orientation="vertical"
+  android:layout_width="match_parent"
+  android:layout_height="match_parent">
+  <MvvmCross.Droid.Support.V7.RecyclerView.MvxRecyclerView
+    android:layout_width="match_parent"
+    android:layout_height="70dp"
+    android:id="@+id/channelTabs"
+    android:orientation="horizontal"
+    local:MvxBind="ItemsSource AllConversations; ItemClick TabSelectedCommand"
+    local:MvxItemTemplate="@layout/list_item_tab" />
+  <FrameLayout
+    android:layout_width="match_parent"
+    android:layout_height="0dp"
+    android:layout_weight="1"
+    android:id="@android:id/content">
+    <Mvx.MvxListView
+      android:id="@+id/messageList"
+      android:layout_width="match_parent"
+      android:layout_height="match_parent"
+      local:MvxBind="ItemsSource SelectedTab.Messages"
+      local:MvxItemTemplate="@layout/list_item_message" />
+  </FrameLayout>
+  <RelativeLayout
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+    <EditText
+      android:id="@+id/input"
+      android:layout_width="match_parent"
+      android:layout_height="wrap_content"
+      android:maxLines="5"
+      android:layout_alignParentStart="true"
+      android:layout_toStartOf="@+id/sendButton"
+      local:MvxBind="Text SelectedTab.EnteredText" />
+    <Button
+      android:id="@+id/sendButton"
+      android:layout_width="wrap_content"
+      android:layout_height="wrap_content"
+      android:layout_alignParentEnd="true"
+      local:MvxBind="Text [Chat_Send]; Click SelectedTab.SendCommand" />
+  </RelativeLayout>
+</LinearLayout>

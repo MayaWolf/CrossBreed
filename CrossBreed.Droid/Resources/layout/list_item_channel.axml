@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+	xmlns:android="http://schemas.android.com/apk/res/android"
+	xmlns:local="http://schemas.android.com/apk/res-auto"
+	android:layout_width="match_parent"
+	android:background="@drawable/list_item_background"
+	android:layout_height="match_parent">
+	<CheckBox
+		android:layout_width="match_parent"
+		android:layout_height="wrap_content"
+		android:textAppearance="?android:textAppearanceMedium"
+		local:MvxBind="Checked IsJoined; Visible JoinIsPending, Converter=Negate; Text Name" />
+	<ProgressBar
+		android:layout_width="wrap_content"
+		android:layout_height="wrap_content"
+		android:layout_gravity="center_vertical"
+		android:paddingLeft="8dp"
+		android:paddingRight="8dp"
+		style="?android:progressBarStyleSmall"
+		local:MvxBind="Visible JoinIsPending" />
+	<TextView
+		android:layout_width="0dp"
+		android:layout_height="wrap_content"
+		android:layout_weight="1"
+		android:paddingTop="3dp"
+		android:paddingBottom="3dp"
+		android:textAppearance="?android:textAppearanceMedium"
+		local:MvxBind="Text Name; Visible JoinIsPending" />
+</LinearLayout>

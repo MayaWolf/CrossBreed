@@ -1,0 +1,25 @@
+﻿<TextBox
+	x:Class="CrossBreed.Windows.Views.IconTextBox"
+	xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+	xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+	xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+	xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+	xmlns:views="clr-namespace:CrossBreed.Windows.Views"
+	mc:Ignorable="d"
+	x:Name="this"
+	Padding="20,0,0,0"
+	d:DesignHeight="300" d:DesignWidth="300">
+	<TextBox.Template>
+		<ControlTemplate TargetType="{x:Type views:IconTextBox}">
+			<Border BorderThickness="{TemplateBinding BorderThickness}" BorderBrush="{Binding ElementName=TextBox, Path=BorderBrush}">
+				<DockPanel Background="{TemplateBinding Background}">
+					<Image DockPanel.Dock="Left" Source="{TemplateBinding IconSource}" Stretch="None" Margin="3,0,3,0" />
+					<ContentControl DockPanel.Dock="Left" Content="{TemplateBinding Path}" Margin="3,0,3,0" />
+					<TextBox x:Name="TextBox" Text="{Binding Text, RelativeSource={RelativeSource TemplatedParent}, UpdateSourceTrigger=PropertyChanged}"
+						Foreground="{TemplateBinding Foreground}" Background="{TemplateBinding Background}" BorderThickness="0"
+						FontFamily="{TemplateBinding FontFamily}" FontSize="{TemplateBinding FontSize}" FontWeight="{TemplateBinding FontWeight}" />
+				</DockPanel>
+			</Border>
+		</ControlTemplate>
+	</TextBox.Template>
+</TextBox>

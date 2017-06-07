@@ -1,0 +1,31 @@
+﻿<Popup
+	x:Class="CrossBreed.Windows.Views.ChangeStatusPopup"
+	xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+	xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+	xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+	xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+	xmlns:local="clr-namespace:CrossBreed.Windows"
+	xmlns:viewModels="clr-namespace:CrossBreed.ViewModels;assembly=CrossBreed.ViewModels"
+	mc:Ignorable="d"
+	Placement="MousePoint" IsOpen="False" StaysOpen="False"
+	d:DesignHeight="300" d:DesignWidth="300"
+	x:Name="this"
+	d:DataContext="{d:DesignInstance viewModels:MainViewModel}">
+	<ContentControl Style="{StaticResource PopupContentStyle}">
+		<StackPanel>
+			<ComboBox ItemsSource="{Binding Statuses}" x:Name="SetStatusComboBox" SelectedItem="{Binding Character.Character.Status, Mode=OneWay}">
+				<ComboBox.ItemTemplate>
+					<DataTemplate>
+						<TextBlock Text="{Binding Converter={StaticResource StatusConverter}}" />
+					</DataTemplate>
+				</ComboBox.ItemTemplate>
+			</ComboBox>
+			<DockPanel Margin="0,5,0,0">
+				<TextBlock Text="{Binding [SetStatus_StatusText]}" DockPanel.Dock="Left" />
+				<TextBlock x:Name="TextLength" DockPanel.Dock="Right" TextAlignment="Right" />
+			</DockPanel>
+			<TextBox x:Name="SetStatusText" Text="{Binding Character.Character.StatusMessage, Mode=OneWay}" Width="200" TextWrapping="Wrap" TextChanged="StatusTextChanged" />
+			<Button Margin="0,10,0,0" Click="SetStatusButtonClicked" Content="{Binding [SetStatus_Button]}" HorizontalAlignment="Right" />
+		</StackPanel>
+	</ContentControl>
+</Popup>

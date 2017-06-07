@@ -1,0 +1,32 @@
+﻿<Grid
+	x:Class="CrossBreed.Windows.Views.ColorPicker"
+	xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+	xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+	xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+	xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+	mc:Ignorable="d"
+	x:Name="this"
+	d:DesignHeight="300" d:DesignWidth="300" Height="20" Width="20">
+	<ContentControl Style="{Binding ButtonStyle, ElementName=this}" Cursor="Hand" MouseLeftButtonDown="RectangleClicked">
+		<Rectangle Stroke="{DynamicResource Theme.Foreground}" Fill="{Binding SelectedColor, ElementName=this, Converter={StaticResource ColorBrushConverter}}" />
+	</ContentControl>
+	<Popup x:Name="ColourPopup" MaxWidth="400" StaysOpen="False" Placement="MousePoint">
+		<ContentControl Style="{StaticResource PopupContentStyle}">
+			<ListBox ItemsSource="{Binding AvailableColors, ElementName=this}" SelectionChanged="Selector_OnSelectionChanged" SelectedValue="{Binding SelectedColor, ElementName=this}"
+				ScrollViewer.HorizontalScrollBarVisibility="Disabled">
+				<ListBox.ItemsPanel>
+					<ItemsPanelTemplate>
+						<WrapPanel Background="{DynamicResource Theme.Background}" />
+					</ItemsPanelTemplate>
+				</ListBox.ItemsPanel>
+				<ListBox.ItemTemplate>
+					<DataTemplate>
+						<Border BorderBrush="{DynamicResource Theme.AccentColorLight}" BorderThickness="1" Padding="1">
+							<Border Background="{Binding Converter={StaticResource ColorBrushConverter}}" Height="10" Width="10" />
+						</Border>
+					</DataTemplate>
+				</ListBox.ItemTemplate>
+			</ListBox>
+		</ContentControl>
+	</Popup>
+</Grid>

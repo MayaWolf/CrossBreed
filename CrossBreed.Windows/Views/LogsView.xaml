@@ -1,0 +1,22 @@
+﻿<mvx:MvxWpfView
+    x:TypeArguments="viewModels:LogsViewModel"
+    x:Class="CrossBreed.Windows.Views.LogsView"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:viewModels="clr-namespace:CrossBreed.ViewModels;assembly=CrossBreed.ViewModels"
+    xmlns:mvx="clr-namespace:MvvmCross.Wpf.Views;assembly=MvvmCross.Wpf"
+    d:DataContext="{d:DesignInstance viewModels:LogsViewModel}"
+    mc:Ignorable="d">
+    <DockPanel>
+        <StackPanel DockPanel.Dock="Top">
+            <ComboBox ItemsSource="{Binding Conversations}" DisplayMemberPath="Name" SelectedItem="{Binding SelectedConversation}" />
+            <ComboBox ItemsSource="{Binding Days}" DisplayMemberPath="Text" SelectedItem="{Binding SelectedDay}" />
+        </StackPanel>
+        <ScrollViewer VerticalScrollBarVisibility="Auto" Margin="5" ScrollChanged="ScrollChanged">
+            <RichTextBox IsReadOnly="True" x:Name="TextView" Background="{DynamicResource Theme.Background}" Foreground="{DynamicResource Theme.Foreground}"
+                BorderThickness="0" IsDocumentEnabled="True" />
+        </ScrollViewer>
+    </DockPanel>
+</mvx:MvxWpfView>
