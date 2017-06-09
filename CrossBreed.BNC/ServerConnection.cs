@@ -23,6 +23,7 @@ namespace CrossBreed.BNC {
 		private bool disposed;
 		private readonly IChatManager chatManager;
 		private readonly IBufferManager buffer;
+		private readonly IMessageManager messageManager;
 		private readonly CharacterManager characterManager;
 		private readonly ChannelManager channelManager;
 		private readonly ManualResetEvent clientConnectingHandle = new ManualResetEvent(true);
@@ -35,9 +36,10 @@ namespace CrossBreed.BNC {
 			}
 		}
 
-		public ServerConnection(IChatManager chatManager, IBufferManager buffer, CharacterManager characterManager, ChannelManager channelManager) {
+		public ServerConnection(IChatManager chatManager, IBufferManager buffer, IMessageManager messageManager, CharacterManager characterManager, ChannelManager channelManager) {
 			this.chatManager = chatManager;
 			this.buffer = buffer;
+			this.messageManager = messageManager;
 			this.characterManager = characterManager;
 			this.channelManager = channelManager;
 			statusTimer.Elapsed += delegate {
@@ -100,9 +102,23 @@ namespace CrossBreed.BNC {
 				case ClientCommandType.PIN:
 					return;
 				case ClientCommandType.PRI:
-				case ClientCommandType.MSG:
+					messageManager.SendMessage(new Character(command.Payload.Value<string>("recipient")), command.Payload.Value<string>("message"));
 					buffer.ClearBuffer();
-					break;
+					return;
+				case ClientCommandType.MSG:
+				case ClientCommandType.LRP:
+					var id = command.Payload.Value<string>("channel");
+					var name = id.StartsWith("ADH-", StringComparison.InvariantCultureIgnoreCase) ? channelManager.PrivateChannels[id].Name : id;
+					switch(command.Type) {
+						case ClientCommandType.MSG:
+							messageManager.SendMessage(new Channel(id, name, null), command.Payload.Value<string>("message"));
+							break;
+						case ClientCommandType.LRP:
+							messageManager.SendAd(new Channel(id, name, null), command.Payload.Value<string>("message"));
+							break;
+					}
+					buffer.ClearBuffer();
+					return;
 				case ClientCommandType.STA:
 					customStatus = command.Payload.ToObject<ClientSta>();
 					SetStatus(customStatus);
@@ -121,7 +137,7 @@ namespace CrossBreed.BNC {
 
 			connection.Send(Helpers.CreateServerCommand(ServerCommandType.IDN, new ServerIdn { character = character.Name }));
 			foreach(var message in introMessages) connection.Send(message);
-			if(disconnectedStatus != null && connections.Count == 1) SetStatus(customStatus ?? new ClientSta { status = StatusEnum.Online });
+			if(disconnectedStatus != null && connections.Count == 0) SetStatus(customStatus ?? new ClientSta { status = StatusEnum.Online });
 
 			foreach(var message in characterManager.GetJoinCommands()) connection.Send(message);
 

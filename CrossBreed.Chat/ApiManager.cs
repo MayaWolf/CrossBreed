@@ -1,4 +1,5 @@
-﻿using System.Net.Http;
+﻿using System.Collections.Generic;
+using System.Net.Http;
 using System.Text;
 using System.Threading.Tasks;
 using Newtonsoft.Json.Linq;
@@ -12,8 +13,8 @@ namespace CrossBreed.Chat {
 
 		private async Task<JObject> TryGetTicket() {
 			using(var client = new HttpClient()) {
-				var content = new StringContent($"account={UserName}&password={password}", Encoding.UTF8, "application/x-www-form-urlencoded");
-				var response = await client.PostAsync("https://www.f-list.net/json/getApiTicket.php", content);
+				var response = await client.PostAsync("https://www.f-list.net/json/getApiTicket.php",
+					new FormUrlEncodedContent(new[] { new KeyValuePair<string, string>("account", UserName), new KeyValuePair<string, string>("password", password) }));
 				var responseContent = await response.Content.ReadAsStringAsync();
 				var obj = JObject.Parse(responseContent);
 				Ticket = obj.Value<string>("ticket");

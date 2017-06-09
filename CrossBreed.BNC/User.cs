@@ -40,8 +40,8 @@ namespace CrossBreed.BNC {
 			bufferManager.SetEventSource(chatManager);
 			var characterManager = new CharacterManager(chatManager, apiManager);
 			var channelManager = new ChannelManager(chatManager, characterManager);
-			var connection = new ServerConnection(chatManager, bufferManager, characterManager, channelManager);
 			var messageManager = new MessageManager(chatManager, characterManager, channelManager);
+			var connection = new ServerConnection(chatManager, bufferManager, messageManager, characterManager, channelManager);
 			var logManager = new Logger(chatManager, messageManager);
 
 			chatManager.Disconnected += () => OnConnectionLoss(character);

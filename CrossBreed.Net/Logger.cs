@@ -24,7 +24,7 @@ namespace CrossBreed.Net {
 		}
 
 		private void LogMessage(string id, Message message) {
-			var fileName = DateTime.Now.ToString("yyy-MM-dd") + (message.MessageType == Message.Type.Message ? "-Ads" : "") + ".txt";
+			var fileName = DateTime.Now.ToString("yyy-MM-dd") + (message.MessageType == Message.Type.Ad ? "-Ads" : "") + ".txt";
 			var dir = Path.Combine(logDirectory, id);
 			Directory.CreateDirectory(dir);
 			using(var writer = new StreamWriter(Path.Combine(dir, fileName), true)) {

@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Timers;
 using CrossBreed.Chat;
 using CrossBreed.Entities;
@@ -72,9 +73,16 @@ namespace CrossBreed.BNC {
 		}
 
 		public void Send(ServerCommand message) {
-			var command = JObject.FromObject(message);
-			command["bncTime"] = message.Time;
-			var serialized = command.ToString(Formatting.None);
+			var sw = new StringWriter();
+			sw.Write(message.Type);
+			sw.Write(' ');
+			var writer = new JsonTextWriter(sw);
+			writer.WriteStartObject();
+			writer.WritePropertyName("bncTime");
+			writer.WriteValue(message.Time);
+			foreach(var property in message.Payload.Properties()) property.WriteTo(writer);
+			writer.WriteEndObject();
+			var serialized = sw.ToString();
 			Console.WriteLine($">>> CLI{clientId}: {serialized}");
 			Send(serialized);
 		}
