@@ -106,17 +106,11 @@ namespace CrossBreed.BNC {
 					buffer.ClearBuffer();
 					return;
 				case ClientCommandType.MSG:
+					messageManager.SendMessage(channelManager.JoinedChannels.TryGet(command.Payload.Value<string>("channel").ToLower()), command.Payload.Value<string>("message"));
+					buffer.ClearBuffer();
+					return;
 				case ClientCommandType.LRP:
-					var id = command.Payload.Value<string>("channel");
-					var name = id.StartsWith("ADH-", StringComparison.InvariantCultureIgnoreCase) ? channelManager.PrivateChannels[id].Name : id;
-					switch(command.Type) {
-						case ClientCommandType.MSG:
-							messageManager.SendMessage(new Channel(id, name, null), command.Payload.Value<string>("message"));
-							break;
-						case ClientCommandType.LRP:
-							messageManager.SendAd(new Channel(id, name, null), command.Payload.Value<string>("message"));
-							break;
-					}
+					messageManager.SendAd(channelManager.JoinedChannels.TryGet(command.Payload.Value<string>("channel").ToLower()), command.Payload.Value<string>("message"));
 					buffer.ClearBuffer();
 					return;
 				case ClientCommandType.STA:

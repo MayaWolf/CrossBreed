@@ -82,7 +82,7 @@ namespace CrossBreed.Chat {
 					var jch = command.Payload.ToObject<ServerJch>();
 					if(jch.character.identity == chatManager.OwnCharacterName) {
 						var memberList = new ObservableKeyedList<Character, Channel.Member>(x => x.Character);
-						var newChannel = new Channel(jch.channel, jch.title, memberList);
+						var newChannel = new Channel(jch.channel.ToLower(), jch.title, memberList);
 						members.Add(newChannel, memberList);
 						joinedChannels.Add(newChannel);
 						SetIsJoined(newChannel, true);
@@ -107,7 +107,7 @@ namespace CrossBreed.Chat {
 					return;
 				case ServerCommandType.CHA:
 					publicChannels.Reset(command.Payload.GetValue("channels").Select(x => {
-						var name = x.Value<string>("name");
+						var name = x.Value<string>("name").ToLower();
 						var item = new ChannelListItem(name, name, x.Value<int>("characters"));
 						item.IsJoined = JoinedChannels.ContainsKey(item.Id);
 						return item;
@@ -115,7 +115,7 @@ namespace CrossBreed.Chat {
 					return;
 				case ServerCommandType.ORS:
 					privateChannels.Reset(command.Payload.GetValue("channels").Select(x => {
-						var item = new ChannelListItem(x.Value<string>("name"), x.Value<string>("title"), x.Value<int>("characters"));
+						var item = new ChannelListItem(x.Value<string>("name").ToLower(), x.Value<string>("title"), x.Value<int>("characters"));
 						item.IsJoined = JoinedChannels.ContainsKey(item.Id);
 						return item;
 					}));
@@ -123,7 +123,7 @@ namespace CrossBreed.Chat {
 				default:
 					return;
 			}
-			HandleChannelMessage(joinedChannels[command.Value<string>("channel")], command);
+			HandleChannelMessage(joinedChannels[command.Value<string>("channel").ToLower()], command);
 		}
 
 		private Channel.Member GetChannelMember(Channel channel, string character) =>
@@ -181,7 +181,7 @@ namespace CrossBreed.Chat {
 					else AddOp(channel, newOwner, Channel.RankEnum.Owner);
 					break;
 				case ServerCommandType.RMO:
-					channel.Mode = msg.Value<Channel.ModeEnum>("mode");
+					channel.Mode = msg.Value<string>("mode").ToEnum<Channel.ModeEnum>();
 					break;
 			}
 		}

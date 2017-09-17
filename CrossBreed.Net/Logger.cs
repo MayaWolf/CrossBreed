@@ -28,8 +28,7 @@ namespace CrossBreed.Net {
 			var dir = Path.Combine(logDirectory, id);
 			Directory.CreateDirectory(dir);
 			using(var writer = new StreamWriter(Path.Combine(dir, fileName), true)) {
-				var name = $"[user]{message.Sender.Name}[/user]";
-				var text = message.Text.StartsWith("/me") ? $"*{name}{message.Text.Substring(3)}" : $"{name}: {message.Text}";
+				var text = message.Text.StartsWith("/me") ? $"*{message.Sender.Name}{message.Text.Substring(3)}" : $"{message.Sender.Name}: {message.Text}";
 				writer.WriteLine($"[{message.Time.ToString("t", CultureInfo.CurrentUICulture)}] {text}");
 			}
 		}

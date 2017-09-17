@@ -105,11 +105,11 @@ namespace CrossBreed.Chat {
 					break;
 				case ServerCommandType.CIU:
 					var ciu = command.Payload.ToObject<ServerCiu>();
-					var channel = (ciu.name == ciu.title ? channelManager.PublicChannels : channelManager.PrivateChannels)[ciu.name];
-					AddEvent(new InviteEvent(characterManager.GetCharacter(ciu.sender), channel));
+					var channel = (ciu.name == ciu.title ? channelManager.PublicChannels : channelManager.PrivateChannels).TryGet(ciu.name);
+					if(channel != null) AddEvent(new InviteEvent(characterManager.GetCharacter(ciu.sender), channel));
 					break;
 				case ServerCommandType.SYS:
-					var chan = command.Value<string>("channel");
+					var chan = command.Value<string>("channel").ToLower();
 					AddEvent(new SysEvent(command.Value<string>("message"), channelManager.JoinedChannels.ContainsKey(chan) ? channelManager.JoinedChannels[chan] : null));
 					break;
 				case ServerCommandType.ZZZ:

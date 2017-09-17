@@ -95,8 +95,7 @@ namespace CrossBreed.ViewModels {
 					return true;
 				case "join":
 					var name = command.Text;
-					var channel = channelManager.PublicChannels.TryGet(name) ?? channelManager.PrivateChannels.TryGet(name);
-					channelManager.JoinChannel(channel?.Id ?? name);
+					channelManager.JoinChannel(name);
 					return true;
 				case "gkick":
 					characterViewModels.GetCharacterViewModel(command.Text).KickCommand.Execute();

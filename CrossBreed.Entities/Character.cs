@@ -8,7 +8,7 @@ namespace CrossBreed.Entities {
 		public string Name { get; }
 		public GenderEnum Gender { get; set; }
 		public StatusEnum Status { get; set; }
-		public string StatusMessage { get; set; }
+		public string StatusMessage { get; set; } = "";
 		public bool IsFriend { get; set; }
 		public event Action IsFriendChanged;
 		public bool IsBookmarked { get; set; }

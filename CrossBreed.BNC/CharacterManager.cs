@@ -22,9 +22,9 @@ namespace CrossBreed.BNC {
 			yield return Helpers.CreateServerCommand(ServerCommandType.IGN, new ServerIgn { characters = IgnoreList, action = "init" });
 			yield return Helpers.CreateServerCommand(ServerCommandType.ADL, new ServerAdl { ops = OpsList });
 
-			var list = new List<string[]>(100);
+			var list = new List<Character>(100);
 			foreach(var user in onlineUsers) {
-				list.Add(new[] { user.Name, user.Gender.ToString(), user.Status.ToString(), user.StatusMessage });
+				list.Add(user);
 				if(list.Count != 100) continue;
 				yield return Helpers.CreateServerCommand(ServerCommandType.LIS, new ServerLis { characters = list });
 				list.Clear();

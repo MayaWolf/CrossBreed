@@ -1,5 +1,5 @@
 ﻿using System;
-using System.CodeDom.Compiler;
+using System.Collections.Generic;
 using System.Configuration;
 using System.IO;
 using System.Linq;
@@ -7,7 +7,8 @@ using System.Threading;
 using CrossBreed.Chat;
 using System.Reflection;
 using CrossBreed.Net;
-using Microsoft.CodeDom.Providers.DotNetCompilerPlatform;
+using Microsoft.CodeAnalysis;
+using Microsoft.CodeAnalysis.CSharp;
 using Newtonsoft.Json.Linq;
 using Websockets;
 
@@ -19,38 +20,49 @@ namespace CrossBreed.Bot {
 		private static IScript instance;
 		private static string userName;
 
-		private static readonly CompilerParameters compilerParameters = new CompilerParameters(new[] {
-			"mscorlib.dll",
-			"System.Core.dll",
-			"System.dll",
-			"System.Runtime.dll",
-			"System.ObjectModel.dll",
-			"CrossBreed.Chat.dll",
-			"CrossBreed.Entities.dll",
-			"CrossBreed.Bot.exe",
-			"ML.Collections.dll"
-		});
+		private static readonly HashSet<string> loaded = new HashSet<string>();
+
+		private static IEnumerable<Assembly> GetAssemblies(Assembly assembly) {
+			if(loaded.Contains(assembly.FullName)) yield break;
+			loaded.Add(assembly.FullName);
+			yield return assembly;
+			foreach(var reference in assembly.GetReferencedAssemblies()) {
+				Assembly loaded = null;
+				try {
+					loaded = Assembly.Load(reference);
+				} catch(Exception e) {
+					Console.WriteLine($"Unable to load assembly {reference.FullName} - {e.Message}");
+				}
+				if(loaded == null) continue;
+				foreach(var item in GetAssemblies(loaded)) yield return item;
+			}
+		}
 
 		static void Main(string[] args) {
+			var refs = GetAssemblies(typeof(Program).Assembly).ToArray();
 			WebSocketFactory.Init(() => new WebSocketConnection());
 			AppDomain.CurrentDomain.UnhandledException += (_, e) => File.AppendAllText("crash.log", DateTime.Now + "\r\n" + e.ExceptionObject + "\r\n\r\n");
 			userName = ConfigurationManager.AppSettings["UserName"];
-			if(userName == null) throw new ConfigurationErrorsException("No user configured!");
+			if(string.IsNullOrWhiteSpace(userName)) throw new ConfigurationErrorsException("No user configured!");
 			character = ConfigurationManager.AppSettings["Character"];
-			if(character == null) throw new ConfigurationErrorsException("No character configured!");
+			if(string.IsNullOrWhiteSpace(character)) throw new ConfigurationErrorsException("No character configured!");
 			apiManager = new ApiManager();
 
 			var kill = new ManualResetEvent(false);
 			Console.CancelKeyPress += delegate { kill.Set(); };
-
-			var compiler = new CSharpCodeProvider();
-			var results = compiler.CompileAssemblyFromFile(compilerParameters, ConfigurationManager.AppSettings["Script"]);
-			var errors = results.Errors.Cast<CompilerError>().ToList();
-			if(errors.Count > 0) {
-				foreach(var error in errors) Console.WriteLine(error.ErrorText);
-			} else {
-				script = results.CompiledAssembly.ExportedTypes.Single();
-				Connect();
+			var path = Path.GetDirectoryName(typeof(object).Assembly.Location);
+			var compilation = CSharpCompilation.Create("script",
+				new[] { CSharpSyntaxTree.ParseText(File.ReadAllText(ConfigurationManager.AppSettings["Script"])) },
+				refs.Select(x => MetadataReference.CreateFromFile(x.Location)),
+				new CSharpCompilationOptions(OutputKind.DynamicallyLinkedLibrary));
+			using(var stream = new MemoryStream()) {
+				var result = compilation.Emit(stream);
+				if(result.Success) {
+					Console.WriteLine("Script compilation successful.");
+					script = Assembly.Load(stream.ToArray()).ExportedTypes.Single();
+					Connect();
+				}
+				foreach(var error in result.Diagnostics) Console.WriteLine(error);
 			}
 
 			kill.WaitOne();
@@ -58,13 +70,14 @@ namespace CrossBreed.Bot {
 
 		private static async void Connect() {
 			var response = await apiManager.LogIn(userName, ConfigurationManager.AppSettings["Password"]);
-			if(response.TryGetValue("error", out JToken error) && error.HasValues) {
+			if(response.TryGetValue("error", out JToken error) && !string.IsNullOrEmpty((string) error)) {
 				Console.WriteLine("ERROR: F-List authentication failed!");
+				Console.WriteLine(error);
 				OnConnectionLoss();
 				return;
 			}
 
-			var chatManager = new ChatManager(apiManager);
+			var chatManager = new ChatManager(apiManager, typeof(Program).Assembly.GetName());
 			var characterManager = new CharacterManager(chatManager, apiManager);
 			var channelManager = new ChannelManager(chatManager, characterManager);
 			var messageManager = new MessageManager(chatManager, characterManager, channelManager);

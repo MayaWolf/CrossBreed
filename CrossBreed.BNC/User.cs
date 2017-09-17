@@ -28,15 +28,16 @@ namespace CrossBreed.BNC {
 
 		private async Task Connect(string character) {
 			var response = await apiManager.LogIn(Name, password);
-			if(response.TryGetValue("error", out JToken error) && error.HasValues) {
+			if(response.TryGetValue("error", out JToken error) && !string.IsNullOrEmpty((string) error)) {
 				Console.WriteLine("ERR: FList authentication failed - " + error);
+				Thread.Sleep(50000);
 				OnConnectionLoss(character);
 				return;
 			}
 			if(!buffers.ContainsKey(character)) buffers.Add(character, new BufferManager());
 			var bufferManager = buffers[character];
 
-			var chatManager = new ChatManager(apiManager);
+			var chatManager = new ChatManager(apiManager, typeof(User).Assembly.GetName());
 			bufferManager.SetEventSource(chatManager);
 			var characterManager = new CharacterManager(chatManager, apiManager);
 			var channelManager = new ChannelManager(chatManager, characterManager);

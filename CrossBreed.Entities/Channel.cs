@@ -1,6 +1,7 @@
 ﻿using System;
 using System.ComponentModel;
 using System.Runtime.CompilerServices;
+using System.Runtime.Serialization;
 using ML.Collections;
 using PropertyChanged;
 
@@ -21,9 +22,9 @@ namespace CrossBreed.Entities {
 		}
 
 		public enum ModeEnum {
-			Chat,
-			Ads,
-			Both
+			[EnumMember(Value = "chat")] Chat,
+			[EnumMember(Value = "ads")] Ads,
+			[EnumMember(Value = "both")] Both
 		}
 
 		public enum RankEnum {

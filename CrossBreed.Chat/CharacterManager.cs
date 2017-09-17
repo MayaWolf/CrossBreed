@@ -58,7 +58,7 @@ namespace CrossBreed.Chat {
 			return character;
 		}
 
-		private void AddCharacter(string name, GenderEnum gender, StatusEnum status, string statusMessage = null) {
+		private void AddCharacter(string name, GenderEnum gender, StatusEnum status, string statusMessage = "") {
 			var character = GetCharacter(name);
 			character.Gender = gender;
 			character.Status = status;
@@ -84,7 +84,7 @@ namespace CrossBreed.Chat {
 								characterList[ign.character].IsIgnored = true;
 							}
 							break;
-						case "remove":
+						case "delete":
 							ignoreList.Remove(ign.character);
 							if(characterList.ContainsKey(ign.character)) {
 								characterList[ign.character].IsIgnored = false;
@@ -97,7 +97,7 @@ namespace CrossBreed.Chat {
 					break;
 				case ServerCommandType.LIS:
 					var characters = msg.Payload.ToObject<ServerLis>().characters;
-					foreach(var user in characters) AddCharacter(user[0], Helpers.GetGender(user[1]), user[2].ToEnum<StatusEnum>(), user[3]);
+					foreach(var user in characters) AddCharacter(user.Name, user.Gender, user.Status, user.StatusMessage);
 					break;
 				case ServerCommandType.FLN:
 					characterList[msg.Value<string>("character")].Status = StatusEnum.Offline;

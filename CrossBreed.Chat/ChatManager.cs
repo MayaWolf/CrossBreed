@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Diagnostics;
+using System.Reflection;
 using CrossBreed.Entities;
 using CrossBreed.Entities.ClientMessages;
 using CrossBreed.Entities.ServerMessages;
@@ -12,6 +13,7 @@ using Websockets;
 namespace CrossBreed.Chat {
 	public class ChatManager : IChatManager {
 		private readonly IApiManager apiManager;
+		private readonly AssemblyName app;
 		private readonly IWebSocketConnection socket;
 		private bool disposed;
 		public string OwnCharacterName { get; private set; }
@@ -32,16 +34,17 @@ namespace CrossBreed.Chat {
 			};
 		}
 
-		public ChatManager(IApiManager apiManager) {
+		public ChatManager(IApiManager apiManager, AssemblyName app) {
 			this.apiManager = apiManager;
+			this.app = app;
 			socket = WebSocketFactory.Create();
 			socket.OnMessage += OnServerMessageReceived;
 		}
 
-		public async void Connect(string character, string host) {
+		public void Connect(string character, string host) {
 			OwnCharacterName = character;
 			socket.OnOpened += () => Send(Helpers.CreateClientCommand(ClientCommandType.IDN,
-				new ClientIdn { account = apiManager.UserName, ticket = apiManager.Ticket, character = OwnCharacterName }));
+				new ClientIdn { account = apiManager.UserName, ticket = apiManager.Ticket, character = OwnCharacterName, cname = app.Name, cversion = app.Version.ToString() }));
 			socket.Open(host);
 		}
 
@@ -75,7 +78,7 @@ namespace CrossBreed.Chat {
 					break;
 				case ServerCommandType.ERR:
 					var code = msg.Value<int>("number");
-					if(code == 2 || code == 3 || code == 4 || code == 6 || code == -4) socket.Close();
+					if(code == 2 || code == 3 || code == 4 || code == -4) socket.Close();
 					break;
 			}
 			CommandReceived?.Invoke(msg);

@@ -48,7 +48,9 @@ namespace CrossBreed.BNC {
 				if(closed) return;
 				user.OnClientConnect(request.character, this);
 				if(closed) return;
-				pinTimer.Elapsed += delegate { Send(new ServerCommand(ServerCommandType.PIN, null)); };
+				pinTimer.Elapsed += delegate {
+					Send(new ServerCommand(ServerCommandType.PIN, null));
+				};
 				pinTimer.Start();
 				return;
 			}
@@ -73,16 +75,19 @@ namespace CrossBreed.BNC {
 		}
 
 		public void Send(ServerCommand message) {
-			var sw = new StringWriter();
-			sw.Write(message.Type);
-			sw.Write(' ');
-			var writer = new JsonTextWriter(sw);
-			writer.WriteStartObject();
-			writer.WritePropertyName("bncTime");
-			writer.WriteValue(message.Time);
-			foreach(var property in message.Payload.Properties()) property.WriteTo(writer);
-			writer.WriteEndObject();
-			var serialized = sw.ToString();
+			string serialized;
+			if(message.Payload != null) {
+				var sw = new StringWriter();
+				sw.Write(message.Type);
+				sw.Write(' ');
+				var writer = new JsonTextWriter(sw);
+				writer.WriteStartObject();
+				writer.WritePropertyName("bncTime");
+				writer.WriteValue(message.Time);
+				foreach(var property in message.Payload.Properties()) property.WriteTo(writer);
+				writer.WriteEndObject();
+				serialized = sw.ToString();
+			} else serialized = message.Type.ToString();
 			Console.WriteLine($">>> CLI{clientId}: {serialized}");
 			Send(serialized);
 		}

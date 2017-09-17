@@ -85,7 +85,7 @@ namespace CrossBreed.Chat {
 					CharacterMessageReceived?.Invoke(sender, CreateMessage(sender, command.Time, WebUtility.HtmlDecode(message)));
 					break;
 				case ServerCommandType.RLL:
-					CharacterMessageReceived?.Invoke(sender, new Message(Message.Type.Roll, sender, command.Time, message.Substring(message.IndexOf("[/user]" + 7))));
+					CharacterMessageReceived?.Invoke(sender, new Message(Message.Type.Roll, sender, command.Time, message.Substring(message.IndexOf("[/user]") + 7)));
 					break;
 			}
 		}
@@ -93,7 +93,7 @@ namespace CrossBreed.Chat {
 		private void HandleChannelMessage(ServerCommand command, string character) {
 			var sender = characterManager.GetCharacter(character);
 			if(sender.IsIgnored) return;
-			var channel = channelManager.JoinedChannels[command.Value<string>("channel")];
+			var channel = channelManager.JoinedChannels[command.Value<string>("channel").ToLower()];
 			var message = command.Value<string>("message");
 			switch(command.Type) {
 				case ServerCommandType.MSG:
@@ -103,7 +103,7 @@ namespace CrossBreed.Chat {
 					ChannelMessageReceived?.Invoke(channel, new Message(Message.Type.Ad, sender, command.Time, WebUtility.HtmlDecode(message)));
 					break;
 				case ServerCommandType.RLL:
-					ChannelMessageReceived?.Invoke(channel, new Message(Message.Type.Roll, sender, command.Time, message.Substring(message.IndexOf("[/user]" + 7))));
+					ChannelMessageReceived?.Invoke(channel, new Message(Message.Type.Roll, sender, command.Time, message.Substring(message.IndexOf("[/user]") + 7)));
 					break;
 			}
 		}
